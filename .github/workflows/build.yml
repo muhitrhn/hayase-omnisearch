@@ -1,0 +1,49 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - 'package.json'
+      - 'build.mjs'
+      - '.github/workflows/build.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+
+      - run: npm install
+
+      - name: Run tests
+        run: npm run test
+
+      - run: npm run build
+
+      - name: Update last verified date in README
+        run: |
+          DATE=$(date -u '+%B %d, %Y at %H:%M UTC')
+          sed -i "s|> 🕐 Sources last verified:.*|> 🕐 Sources last verified: $DATE|" README.md
+
+      - name: Commit built bundles if changed
+        run: |
+          if git diff --quiet -- dist/ README.md && ! git ls-files --others --exclude-standard dist/ | grep -q .; then
+            echo "Nothing to commit"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dist/ README.md
+          git commit -m "build: refresh bundles and update last verified date"
+          git push

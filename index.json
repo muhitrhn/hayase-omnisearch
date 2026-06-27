@@ -1,0 +1,26 @@
+[
+  {
+    "manifestVersion": 2,
+    "name": "OmniSearch",
+    "id": "anime.omnisearch",
+    "version": "1.0.0",
+    "description": "Unified ID-based search across SeaDex, AnimeTosho, and SubsPlease. Finds old classics and new simulcasts in one fast query.",
+    "type": "torrent",
+    "accuracy": "high",
+    "updatePeers": true,
+    "ratio": 0,
+    "media": "sub",
+    "languages": ["US", "JP"],
+    "url": "aHR0cHM6Ly9naXRodWIuY29tL211aGl0cmhuL2hheWFzZS1vbW5pc2VhcmNo",
+    "icon": "https://releases.moe/favicon.png",
+    "update": "https://raw.githubusercontent.com/muhitrhn/hayase-omnisearch/refs/heads/main/index.json",
+    "code": "https://raw.githubusercontent.com/muhitrhn/hayase-omnisearch/refs/heads/main/dist/omnisearch.js",
+    "options": {
+      "resolution": {
+        "type": "string",
+        "description": "Preferred SubsPlease resolution when Hayase has no global resolution set. 1080, 720, or 480.",
+        "default": "1080"
+      }
+    }
+  }
+]
