@@ -2,6 +2,15 @@ export function normalizeHash (hash) {
   return (hash || '').trim().toLowerCase()
 }
 
+function mergePeerCounts (primary, secondary) {
+  if (!secondary) return primary
+  return {
+    ...primary,
+    seeders: Math.max(primary.seeders || 0, secondary.seeders || 0),
+    leechers: Math.max(primary.leechers || 0, secondary.leechers || 0),
+  }
+}
+
 export function dedupeByHash (results) {
   const byHash = new Map()
 
@@ -11,7 +20,9 @@ export function dedupeByHash (results) {
 
     const existing = byHash.get(hash)
     if (!existing || compareResults(result, existing) < 0) {
-      byHash.set(hash, { ...result, hash })
+      byHash.set(hash, mergePeerCounts({ ...result, hash }, existing))
+    } else {
+      byHash.set(hash, mergePeerCounts(existing, result))
     }
   }
 
@@ -32,21 +43,27 @@ export function compareResults (a, b) {
   return dateB - dateA
 }
 
+function seederScore (seeders) {
+  const count = seeders || 0
+  if (count <= 0) return 0
+  return Math.min(count, 1000) * 6
+}
+
 export function scoreResult (result) {
   let score = 0
 
-  if (result.type === 'best') score += 1000
-  else if (result.type === 'alt') score += 800
-  else if (result.type === 'batch') score += 200
+  if (result.type === 'best') score += 600
+  else if (result.type === 'alt') score += 450
+  else if (result.type === 'batch') score += 150
 
-  if (result.accuracy === 'high') score += 500
-  else if (result.accuracy === 'medium') score += 250
+  if (result.accuracy === 'high') score += 200
+  else if (result.accuracy === 'medium') score += 100
 
-  if (result.source === 'seadex') score += 100
-  else if (result.source === 'animetosho') score += 80
-  else if (result.source === 'subsplease') score += 60
+  if (result.source === 'seadex') score += 80
+  else if (result.source === 'animetosho') score += 60
+  else if (result.source === 'subsplease') score += 40
 
-  score += Math.min(result.seeders || 0, 100)
+  score += seederScore(result.seeders)
   return score
 }
 
