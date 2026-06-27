@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](index.json)
 
-> 🕐 Sources last verified: June 27, 2026 at 00:00 UTC
+> 🕐 Sources last verified: June 27, 2026 at 08:41 UTC
 
 A single Hayase extension that searches **SeaDex**, **AnimeTosho**, and **SubsPlease** in parallel — optimized for high accuracy and fast results across both classic and currently airing anime.
 
