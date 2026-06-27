@@ -26,7 +26,7 @@ A single Hayase extension that searches **SeaDex**, **AnimeTosho**, and **SubsPl
 3. Paste this URL (after you push the repo to GitHub):
 
 ```
-https://raw.githubusercontent.com/muhitrhn/hayase-omnisearch/refs/heads/main/index.json
+https://raw.githubusercontent.com/muhitrhn/hayase-omnisearch/refs/heads/master/index.json
 ```
 
 4. Enable **OmniSearch**

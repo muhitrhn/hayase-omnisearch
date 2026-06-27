@@ -13,8 +13,8 @@
     "languages": ["US", "JP"],
     "url": "aHR0cHM6Ly9naXRodWIuY29tL211aGl0cmhuL2hheWFzZS1vbW5pc2VhcmNo",
     "icon": "https://releases.moe/favicon.png",
-    "update": "https://raw.githubusercontent.com/muhitrhn/hayase-omnisearch/refs/heads/main/index.json",
-    "code": "https://raw.githubusercontent.com/muhitrhn/hayase-omnisearch/refs/heads/main/dist/omnisearch.js",
+    "update": "https://raw.githubusercontent.com/muhitrhn/hayase-omnisearch/refs/heads/master/index.json",
+    "code": "https://raw.githubusercontent.com/muhitrhn/hayase-omnisearch/refs/heads/master/dist/omnisearch.js",
     "options": {
       "resolution": {
         "type": "string",
